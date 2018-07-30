@@ -8,14 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("COMPRADORES")
 @Entity
 @Table(name="compradores")
 public class Buyer {
 
+	@ApiModelProperty(value="Identificador")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer buyerId;
 	
+	@ApiModelProperty(value="Nombre")
 	@Size(max=250)
 	@Column(name="nombre")
 	private String name;

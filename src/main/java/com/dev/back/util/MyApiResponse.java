@@ -2,10 +2,16 @@ package com.dev.back.util;
 
 import com.dev.back.entity.User;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("Respuesta de operaciones CRUD")
 public class MyApiResponse {
 	
+	@ApiModelProperty(value="Mensaje de la operación")
 	private final message message;
 	
+	@ApiModelProperty(value="Datos gestionados o detectados por el servidor")
 	private final User data;
 
 	public MyApiResponse(message message, User data) {

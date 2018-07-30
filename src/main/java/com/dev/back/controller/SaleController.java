@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dev.back.entity.Sale;
 import com.dev.back.service.SaleService;
+import com.dev.back.util.SaleResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,11 +39,11 @@ public class SaleController {
 	@ApiResponses(value= {
 			@ApiResponse(
 					code= 204,
-					message = "No content available"),
+					message = "No content available"),			
 			@ApiResponse(
 					code= 200, 
-					response= Sale.class, 
-					message = "Data from database")
+					response= SaleResponse.class, 
+					message = "Response can be: Report by last 6 months, Report by country and Sales by Buyer")
 	})
 	@GetMapping("/report")
 	public List<?> report(

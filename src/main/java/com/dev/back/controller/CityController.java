@@ -42,7 +42,7 @@ public class CityController {
 					message = "No content available"),
 			@ApiResponse(
 					code= 200, 
-					response= Sale.class, 
+					response= City.class, 
 					message = "Data from database")
 	})
 	@GetMapping("")

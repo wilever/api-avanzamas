@@ -21,26 +21,36 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("Ventas por comprador")
 @Entity
 @Table(name="ventas")
 public class Sale {
 	
+	@ApiModelProperty(value="Identificador",required=true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@ApiModelProperty(value="Nombre del comprador")
 	@Transient
 	private String buyerName;
 	
+	@ApiModelProperty(value="Nombre de la ciudad")
 	@Transient
 	private String cityName;
 	
+	@ApiModelProperty(value="Cantidad de unidades vendidas")
 	@Column(name="cantidad")
 	private Integer quantity;
 	
+	@ApiModelProperty(value="Valor de cada unidad")
 	@Column(name="valor")
 	private Float value;
 	
+	@ApiModelProperty(value="Fecha de venta", example="2018-07-01")
 	@DateTimeFormat(iso = ISO.DATE)
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha")

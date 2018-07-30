@@ -43,7 +43,7 @@ public class BuyerController {
 					message = "No content available"),
 			@ApiResponse(
 					code= 200, 
-					response= Sale.class, 
+					response= Buyer.class, 
 					message = "Data from database")
 	})
 	@GetMapping("")
