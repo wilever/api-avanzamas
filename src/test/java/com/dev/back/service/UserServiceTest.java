@@ -94,12 +94,7 @@ public class UserServiceTest {
 				.content(mapper.writeValueAsString(user)))
 		.andDo(print())
 		.andExpect(status().isConflict())
-		.andExpect(jsonPath("$.message").value(message.DATA_ALREADY_EXIST.toString()))
-		.andExpect(jsonPath("$.data.id").value(user.getId()))
-		.andExpect(jsonPath("$.data.cc").value(user.getCc()))
-		.andExpect(jsonPath("$.data.name").value(user.getName()))
-		.andExpect(jsonPath("$.data.lastName").value(user.getLastName()))
-		.andExpect(jsonPath("$.data.state").value(user.getState()));
+		.andExpect(jsonPath("$.message").value(message.DATA_ALREADY_EXIST.toString()));
 	}
 	
 	@Test
@@ -140,8 +135,7 @@ public class UserServiceTest {
 				.content(mapper.writeValueAsString(user)))
 		.andDo(print())
 		.andExpect(status().isConflict())
-		.andExpect(jsonPath("$.message").value(message.DATA_NO_EXIST.toString()))
-		.andExpect(jsonPath("$.data").doesNotExist());
+		.andExpect(jsonPath("$.message").value(message.DATA_NO_EXIST.toString()));
 	}
 	
 	@Test
@@ -150,8 +144,7 @@ public class UserServiceTest {
 				delete(path+"/?id="+user.getId()))
 		.andDo(print())
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.message").value(message.DATA_DELETED.toString()))
-		.andExpect(jsonPath("$.data").doesNotExist());
+		.andExpect(jsonPath("$.message").value(message.DATA_DELETED.toString()));
 	}
 	
 	@Test
@@ -160,7 +153,6 @@ public class UserServiceTest {
 				delete(path+"/?id="+777l))
 		.andDo(print())
 		.andExpect(status().isConflict())
-		.andExpect(jsonPath("$.message").value(message.DATA_NO_EXIST.toString()))
-		.andExpect(jsonPath("$.data").doesNotExist());
+		.andExpect(jsonPath("$.message").value(message.DATA_NO_EXIST.toString()));
 	}
 }

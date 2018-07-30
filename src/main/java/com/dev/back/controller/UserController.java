@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dev.back.entity.User;
 import com.dev.back.service.UserService;
+import com.dev.back.util.HandlerException.MyHandlerResponse;
+import com.dev.back.util.MyApiException;
 import com.dev.back.util.MyApiResponse;
 
 import io.swagger.annotations.Api;
@@ -31,6 +34,7 @@ import io.swagger.annotations.ApiResponses;
  */
 @Api(tags= {"User Controller"},
 description="CRUD operation over table \"USUARIOS\"")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/api/user")
 @RestController
 public class UserController {
@@ -48,7 +52,11 @@ public class UserController {
 			@ApiResponse(
 					code= 200, 
 					response= User.class, 
-					message = "Data from database")
+					message = "Data from database"),
+			@ApiResponse(
+					code= 500, 
+					response= MyHandlerResponse.class, 
+					message = "Server error")
 	})
 	@GetMapping("")
 	public ResponseEntity<List<User>> get(){
@@ -62,12 +70,20 @@ public class UserController {
 			@ApiResponse(
 					code= 200, 
 					response= MyApiResponse.class, 
-					message = "New data created")
+					message = "New data created"),
+			@ApiResponse(
+					code= 409, 
+					response= MyHandlerResponse.class, 
+					message = "Id already exist"),
+			@ApiResponse(
+					code= 500, 
+					response= MyHandlerResponse.class, 
+					message = "Server error")
 	})
 	@PostMapping("")
 	public ResponseEntity<MyApiResponse> post(
 			@RequestBody
-			User data){
+			User data) throws MyApiException{
 		return service.post(data);
 	}
 	
@@ -81,7 +97,11 @@ public class UserController {
 					message = "Data updated"),
 			@ApiResponse(
 					code= 409, 
-					response= MyApiResponse.class, 
+					response= MyHandlerResponse.class, 
+					message = "Data with conflic"),
+			@ApiResponse(
+					code= 500, 
+					response= MyHandlerResponse.class, 
 					message = "Id no exist")
 	})
 	@PutMapping("")
@@ -89,7 +109,7 @@ public class UserController {
 			@RequestParam("id")
 			Long id,
 			@RequestBody
-			User data){
+			User data) throws MyApiException{
 		return service.put(id, data);
 	}
 	
@@ -103,13 +123,17 @@ public class UserController {
 					message = "Data deleted"),
 			@ApiResponse(
 					code= 409, 
-					response= MyApiResponse.class, 
-					message = "Id no exist")
+					response= MyHandlerResponse.class, 
+					message = "Id no exist"),
+			@ApiResponse(
+					code= 500, 
+					response= MyHandlerResponse.class, 
+					message = "Server error")
 	})
 	@DeleteMapping("")
 	public ResponseEntity<MyApiResponse> delete(
 			@RequestParam("id")
-			Long id){
+			Long id) throws MyApiException{
 		return service.delete(id);
 	}
 }

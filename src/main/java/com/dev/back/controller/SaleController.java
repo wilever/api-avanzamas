@@ -3,6 +3,7 @@ package com.dev.back.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dev.back.entity.Sale;
 import com.dev.back.service.SaleService;
 import com.dev.back.util.SaleResponse;
+import com.dev.back.util.HandlerException.MyHandlerResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +28,7 @@ import io.swagger.annotations.ApiResponses;
  */
 @Api(tags= {"Sale Controller"},
 description="Show data of table \"VENTAS\"")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/api/sale")
 @RestController
 public class SaleController {
@@ -43,7 +46,11 @@ public class SaleController {
 			@ApiResponse(
 					code= 200, 
 					response= SaleResponse.class, 
-					message = "Response can be: Report by last 6 months, Report by country and Sales by Buyer")
+					message = "Response can be: Report by last 6 months, Report by country and Sales by Buyer"),
+			@ApiResponse(
+					code= 500, 
+					response= MyHandlerResponse.class, 
+					message = "Server error")
 	})
 	@GetMapping("/report")
 	public List<?> report(

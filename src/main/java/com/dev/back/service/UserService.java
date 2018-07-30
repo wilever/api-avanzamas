@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dev.back.entity.User;
 import com.dev.back.repository.UserRepo;
+import com.dev.back.util.MyApiException;
 import com.dev.back.util.MyApiResponse;
 import com.dev.back.util.MyApiResponse.message;
 
@@ -29,13 +30,9 @@ public class UserService {
 		}
 	}
 	
-	public ResponseEntity<MyApiResponse> post(User data) {
+	public ResponseEntity<MyApiResponse> post(User data) throws MyApiException {
 		if (repo.findOne(data.getId())!=null) {
-			return new ResponseEntity<>(
-					new MyApiResponse(
-							message.DATA_ALREADY_EXIST, 
-							repo.findOne(data.getId()))
-				, HttpStatus.CONFLICT);
+			throw new MyApiException(message.DATA_ALREADY_EXIST);
 		}else {
 			repo.save(data);
 			return new ResponseEntity<>(
@@ -45,12 +42,9 @@ public class UserService {
 		}
 	}
 	
-	public ResponseEntity<MyApiResponse> put(Long id, User data) {
+	public ResponseEntity<MyApiResponse> put(Long id, User data) throws MyApiException {
 		if (repo.findOne(id)==null) {
-			return new ResponseEntity<>(
-						new MyApiResponse(
-								message.DATA_NO_EXIST, null)
-						, HttpStatus.CONFLICT);
+			throw new MyApiException(message.DATA_NO_EXIST);
 		}else {
 			data.setId(id);
 			repo.save(data);
@@ -61,12 +55,9 @@ public class UserService {
 		}
 	}
 	
-	public ResponseEntity<MyApiResponse> delete(Long id) {
+	public ResponseEntity<MyApiResponse> delete(Long id) throws MyApiException {
 		if (repo.findOne(id)==null) {
-			return new ResponseEntity<>(
-					new MyApiResponse(
-							message.DATA_NO_EXIST, null)
-					, HttpStatus.CONFLICT);
+			throw new MyApiException(message.DATA_NO_EXIST);
 		}else {
 			repo.delete(id);
 			return new ResponseEntity<>(
