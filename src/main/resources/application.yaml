@@ -23,4 +23,4 @@ spring:
         create-drop
 server:
   contextPath:
-    /user-portal
+    /api-avanzamas
