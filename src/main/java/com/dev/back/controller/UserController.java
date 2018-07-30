@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiResponses;
  * @author Wilever Gomez [wilevergomez@gmail.com]
  * 
  */
-@Api(tags= {"Users Controllers"},
+@Api(tags= {"User Controller"},
 description="CRUD operation over table \"USUARIOS\"")
 @RequestMapping("/api/user")
 @RestController
