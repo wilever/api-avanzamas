@@ -119,7 +119,7 @@ public class UserServiceTest {
 	@Test
 	public void test50_putData_success() throws Exception {
 		mockMvc.perform(
-				put(path+"/{id}",user.getId())
+				put(path+"/?id="+user.getId())
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(mapper.writeValueAsString(user)))
 		.andDo(print())
@@ -135,7 +135,7 @@ public class UserServiceTest {
 	@Test
 	public void test60_putData_id_no_exist() throws Exception {
 		mockMvc.perform(
-				put(path+"/{id}",777l)
+				put(path+"/?id="+777l)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(mapper.writeValueAsString(user)))
 		.andDo(print())
@@ -147,7 +147,7 @@ public class UserServiceTest {
 	@Test
 	public void test70_deleteData_success() throws Exception {
 		mockMvc.perform(
-				delete(path+"/{id}",user.getId()))
+				delete(path+"/?id="+user.getId()))
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.message").value(message.DATA_DELETED.toString()))
@@ -157,7 +157,7 @@ public class UserServiceTest {
 	@Test
 	public void test80_deleteData_id_no_exist() throws Exception {
 		mockMvc.perform(
-				delete(path+"/{id}",777l))
+				delete(path+"/?id="+777l))
 		.andDo(print())
 		.andExpect(status().isConflict())
 		.andExpect(jsonPath("$.message").value(message.DATA_NO_EXIST.toString()))

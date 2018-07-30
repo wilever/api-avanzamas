@@ -2,8 +2,6 @@ package com.dev.back.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,7 +15,6 @@ public class User {
 
 	@ApiModelProperty(value= "Identificador. El valor es autogenerado iniciado desde 0 e incrementadose en 1", required=true)
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ApiModelProperty(value= "Campo CC")
