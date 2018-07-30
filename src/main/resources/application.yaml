@@ -1,0 +1,23 @@
+# Properties for heroku deploy
+# Parameters of connection to database
+spring:
+  datasource:
+    url: 
+      ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/dev-back?ssl=false}
+    username:
+      ${JDBC_DATABASE_USERNAME:postgres}
+    password:
+      ${JDBC_DATABASE_PASSWORD:postgres}
+  jpa:
+    properties:
+       hibernate:
+         dialect:
+           org.hibernate.dialect.PostgreSQLDialect
+       javax:
+        persistence:
+          validation:
+            mode:
+              none
+    hibernate:
+      ddl-auto: 
+        create-drop
