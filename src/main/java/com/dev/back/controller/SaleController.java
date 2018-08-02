@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiResponses;
  */
 @Api(tags= {"Sale Controller"},
 description="Show data of table \"VENTAS\"")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/sale")
 @RestController
 public class SaleController {
@@ -59,5 +59,5 @@ public class SaleController {
 			@RequestParam(required=false)
 			String buyer) {
 		return service.getReport(country, buyer);
-	}	
+	}
 }

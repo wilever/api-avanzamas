@@ -3,15 +3,14 @@ package com.dev.back.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dev.back.entity.City;
+import com.dev.back.entity.Country;
 import com.dev.back.entity.Sale;
-import com.dev.back.service.CityService;
+import com.dev.back.service.CountryService;
 import com.dev.back.util.HandlerException.MyHandlerResponse;
 
 import io.swagger.annotations.Api;
@@ -26,34 +25,34 @@ import io.swagger.annotations.ApiResponses;
  * @author Wilever Gomez [wilevergomez@gmail.com]
  * 
  */
-@Api(tags= {"City Controller"},
-description="Show data of table \"CIUDADES\"")
+@Api(tags= {"Country Controller"},
+description="Show data of table \"PAISES\"")
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/city")
+@RequestMapping("/api/country")
 @RestController
-public class CityController {
+public class CountryController {
 
 	@Autowired
-	private CityService service;
-	
+	private CountryService service;
+
 	@ApiOperation(
 			value= "Get data",
-			notes= "Get data from database")
+			notes= "Get countries on database ")
 	@ApiResponses(value= {
 			@ApiResponse(
 					code= 204,
-					message = "No content available"),
+					message = "No content available"),			
 			@ApiResponse(
 					code= 200, 
-					response= City.class, 
-					message = "Data from database"),
+					response= Country.class, 
+					message = "Response can be: Report by last 6 months, Report by country and Sales by Buyer"),
 			@ApiResponse(
 					code= 500, 
 					response= MyHandlerResponse.class, 
 					message = "Server error")
 	})
 	@GetMapping("")
-	public ResponseEntity<List<City>> get(){
-		return service.get();
+	public List<Country> getCountries() {
+		return service.getCountries();
 	}
 }

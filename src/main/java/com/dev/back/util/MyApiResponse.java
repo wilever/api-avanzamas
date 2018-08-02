@@ -1,7 +1,5 @@
 package com.dev.back.util;
 
-import com.dev.back.entity.User;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -10,21 +8,13 @@ public class MyApiResponse {
 	
 	@ApiModelProperty(value="Mensaje de la operación")
 	private final message message;
-	
-	@ApiModelProperty(value="Datos gestionados o detectados por el servidor")
-	private final User data;
 
-	public MyApiResponse(message message, User data) {
+	public MyApiResponse(message message) {
 		this.message = message;
-		this.data = data;
 	}
 
 	public message getMessage() {
 		return message;
-	}
-
-	public User getData() {
-		return data;
 	}
 	
 	public enum message{
@@ -37,6 +27,6 @@ public class MyApiResponse {
 
 	@Override
 	public String toString() {
-		return "ApiResponse [message=" + message + ", data=" + data + "]";
+		return "ApiResponse [message=" + message + "]";
 	}
 }

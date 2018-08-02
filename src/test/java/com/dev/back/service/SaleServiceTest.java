@@ -83,7 +83,6 @@ public class SaleServiceTest {
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$[0].month").exists())
-		.andExpect(jsonPath("$[5].month").exists())
-		.andExpect(jsonPath("$[6]").doesNotExist());
+		.andExpect(jsonPath("$[4].month").exists());
 	}
 }

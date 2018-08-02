@@ -34,7 +34,8 @@ import io.swagger.annotations.ApiResponses;
  */
 @Api(tags= {"User Controller"},
 description="CRUD operation over table \"USUARIOS\"")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/api/user")
 @RestController
 public class UserController {

@@ -14,14 +14,20 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("PAISES")
 @Entity
 @Table(name="paises")
 public class Country {
 	
+	@ApiModelProperty(value="Identificador")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer countryId;
 	
+	@ApiModelProperty(value="Nombre")
 	@Column(name="nombre")
 	private String name;
 	

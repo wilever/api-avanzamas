@@ -37,7 +37,7 @@ public class UserService {
 			repo.save(data);
 			return new ResponseEntity<>(
 						new MyApiResponse(
-								message.DATA_SAVED, data)
+								message.DATA_SAVED)
 					, HttpStatus.CREATED);
 		}
 	}
@@ -50,7 +50,7 @@ public class UserService {
 			repo.save(data);
 			return new ResponseEntity<>(
 						new MyApiResponse(
-								message.DATA_SAVED, data)
+								message.DATA_SAVED)
 						, HttpStatus.OK);
 		}
 	}
@@ -62,7 +62,7 @@ public class UserService {
 			repo.delete(id);
 			return new ResponseEntity<>(
 						new MyApiResponse(
-								message.DATA_DELETED, null)
+								message.DATA_DELETED)
 					, HttpStatus.OK);
 		}
 	}
