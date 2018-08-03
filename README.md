@@ -18,6 +18,8 @@ Usuario:
 
 3. Asimismo se puede acceder a los datos de ciudades(cities), compradores(buyers) y paises(countries)
 
+***********
+
 Enlace de la API: https://api-avanzamas.herokuapp.com/swagger-ui.html
 
 Contacto con el desarrollador: wilevergomez@gmail.com
